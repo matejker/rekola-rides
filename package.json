@@ -17,7 +17,7 @@
     "react-scripts": "^3.0.1",
     "recharts": "^2.12.4"
   },
-  "homepage": "https://matejker.github.io/cyklo-bratislava/#",
+  "homepage": "https://matejker.github.io/rekola-rides/#",
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "rm -rf ./docs && mkdir ./docs && NODE_OPTIONS=--openssl-legacy-provider && mv build/* docs",
