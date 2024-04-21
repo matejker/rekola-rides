@@ -1,12 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import RekolaRides from "./RekolaRides";
-import Connectedness from "./NetworkComponents";
-import Betweenness from "./Betweenness";
-import NetworkGrow from "./NetworkGrow";
 import Home from "./Home";
-import Manifest from "./Manifest";
-import Recommendation from "./Recommendation";
 import RekolaClusters from "./RekolaClusters";
 import StochasticRates from "./StochasticRates";
 import MarkovChain from "./MarkovChain";
@@ -23,12 +18,11 @@ export default function App() {
         <div id="main">
           <h1>
             <Link to={"/"} className={"no-style"}>
-              Cyclo Bratislava
+              Rekola Rides
             </Link>
           </h1>
           <em className="description">
-            A data-driven and network approach to improve cyclo-infrastructure
-            in Bratislava
+            Mobility patterns in Bratislava and predicting demands for bike-sharing from Rekola
           </em>
 
           <h2>Chapters</h2>
@@ -40,18 +34,6 @@ export default function App() {
               <Link to="/rekola-rides">Rekola rides</Link>
             </li>
             <li>
-              <Link to="/betweenness">Betweenness</Link>
-            </li>
-            <li>
-              <Link to="/connectedness">Connectedness</Link>
-            </li>
-            <li>
-              <Link to="/robustness">Robustness</Link>
-            </li>
-            <li>
-              <Link to="/recommendation">General recommendations</Link>
-            </li>
-            <li>
               <Link to="/rekola-clusters">Rekola station clusters</Link>
             </li>
             <li>
@@ -60,7 +42,6 @@ export default function App() {
             <li>
               <Link to="/markov-chain">Markov chain</Link>
             </li>
-            {/*<li><Link to="/manifest">Manifest</Link> (SK)</li>*/}
           </ol>
 
           <Switch>
@@ -69,21 +50,6 @@ export default function App() {
             </Route>
             <Route path="/rekola-rides">
               <RekolaRides />
-            </Route>
-            <Route path="/betweenness">
-              <Betweenness />
-            </Route>
-            <Route path="/connectedness">
-              <Connectedness />
-            </Route>
-            <Route path={"/robustness"}>
-              <NetworkGrow />
-            </Route>
-            <Route path={"/manifest"}>
-              <Manifest />
-            </Route>
-            <Route path="/recommendation">
-              <Recommendation />
             </Route>
             <Route path="/rekola-clusters">
               <RekolaClusters />
