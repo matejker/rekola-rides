@@ -33,7 +33,7 @@ export default function App() {
               <Link to="/rekola-clusters">Rekola station clusters</Link>
             </li>
             <li>
-              <Link to="/markov-chain">Markov chain</Link>
+              <Link to="/markov-chains">Markov chains</Link>
             </li>
             <li>
               <Link to="/stochastic-rates">Stochastic rates</Link>
@@ -50,7 +50,7 @@ export default function App() {
             <Route path="/stochastic-rates">
               <StochasticRates />
             </Route>
-            <Route path="/markov-chain">
+            <Route path="/markov-chains">
               <MarkovChain />
             </Route>
           </Switch>

@@ -83,8 +83,7 @@ const RatesMap = () => {
           ))}
         </ul>
         <div
-          className="left"
-          style={{ width: "500px", height: "350px", textAlign: "center" }}
+          className="left" style={{ width: "500px", height: "350px", textAlign: "center" }}
         >
           <h3>Rents</h3>
           <LineChart

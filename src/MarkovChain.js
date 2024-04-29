@@ -15,12 +15,11 @@ function MarkovChain() {
   const [season, setSeason] = useState("summer");
 
   const productionRates = season === "summer" ? production_summer : production;
-  const attractionsRates =
-    season === "summer" ? attractions_summer : attractions;
+  const attractionsRates = season === "summer" ? attractions_summer : attractions;
 
   return (
     <>
-      <h2>Markov Chain</h2>
+      <h2>Markov Chains</h2>
       <p>
         Fundamentally bikesharing is about the flow of bikes between stations.
         The flow can be modelled as a{" "}
@@ -30,27 +29,51 @@ function MarkovChain() {
         based on historical rides.
       </p>
       <p>
-        However, the number of stations is more that 300, I clustered the
-        stations into 104 clusters &nbsp;
-        <InlineMath>{`\\xi = 1,...,104`}</InlineMath>, based on the{" "}
-        <Link to={"/rekola-clusters"}>K-mean</Link> clustering.
+        Formally defined, a Markov chain is a stochastic process with the memoryless property (also called Markov property).
+        The probability of the next state depends only on the current state and not on the sequence of events that preceded it.
+        (i.e. probability of user riding a bike from station A to station B depends only on the current station A
+        regardless where the bike was stationed before arriving to station A).
       </p>
       <p>
-        Let <InlineMath>{`A = a_\{ij\}`}</InlineMath> be the attraction matrix
-        an entry <InlineMath>{`a_\{ij\}`}</InlineMath>
-        with number of rides over a period of observed period time from station{" "}
-        <InlineMath>{`i`}</InlineMath> to station <InlineMath>{`j`}</InlineMath>
-        . The production matrix <InlineMath>{`B = b_\{ij\}`}</InlineMath> is
-        defined analogously. The production matrix is the transpose of the
-        attraction matrix. To calculate the the transition matrix{" "}
-        <InlineMath>{`P`}</InlineMath> / <InlineMath>{`Q`}</InlineMath> we
-        normalize the attraction / production matrix by the sum of each row.
+        Let <InlineMath>{`X_n`}</InlineMath> be a state (position of the bike) at time step n, then the Markov property
+        can be written as:
+      </p>
+
+      <BlockMath>{`P(X_{n+1}=j | X_{n}=i,X_{n-1}=i_{n-1}, \\dots, X_{0}=i_0)=`}</BlockMath>
+      <BlockMath>{`P(X_{n+1}=j|X_{n}=i) = p_{ij}`}</BlockMath>
+
+      <p>
+        <InlineMath>{`p_{ij}`}</InlineMath> is then call a transition probability from state i to state j
+        (probability of a bike going from station i to station j). All transition probabilities are stored in a matrix
+        called a transition matrix <InlineMath>{`P`}</InlineMath>.
+      </p>
+      <BlockMath>{`P =
+              \\begin{pmatrix}
+              p_{11} & p_{12} & \\cdots & p_{1n} \\\\
+              p_{21} & p_{22} & \\cdots & p_{2n} \\\\
+              \\vdots & \\vdots & \\ddots & \\vdots \\\\
+              p_{n1} & p_{n2} & \\cdots & p_{nn}
+              \\end{pmatrix}`}</BlockMath>
+
+      <h3>Determining transition matrix based on historical rides</h3>
+      <p>
+        First, to reduce the number of stations, I used previously described &nbsp;<Link to={"/rekola-clusters"}>K-mean</Link> clustering,
+        and compound all the stations into <InlineMath>{`n=104`}</InlineMath> clusters.
       </p>
       <p>
-        For transition matrices we can calculate the long term distribution of
-        bikes at each station, which is the eigenvector of the transition matrix
-        with eigenvalue 1 or stationary distribution. The eigenvector &npbs;
-        <InlineMath>{`\\pi`}</InlineMath> sums up to 1.
+        Secondly, to predict number of rents and returns from a given custer, I need to build production and attraction
+        matrices. Let <InlineMath>{`A = a_\{ij\}`}</InlineMath> be the attraction matrix where an entry <InlineMath>{`a_\{ij\}`}</InlineMath>
+        is number of rides over the observed period from station <InlineMath>{`i`}</InlineMath> to station <InlineMath>{`j`}</InlineMath>.
+        The production matrix <InlineMath>{`B = b_\{ij\}`}</InlineMath> is defined analogously. The production matrix is the transpose of the
+        attraction matrix. To calculate the the transition matrix <InlineMath>{`P`}</InlineMath> / <InlineMath>{`Q`}</InlineMath> I
+        normalized the attraction / production matrix by the sum of each row.
+      </p>
+      <BlockMath>{`p_{ij} = \\frac{a_{ij}}{\\sum_{i=1}^na_{ij}}`}</BlockMath>
+      <BlockMath>{`q_{ij} = \\frac{b_{ij}}{\\sum_{i=1}^nb_{ij}}`}</BlockMath>
+      <p>
+        Let's assume that the flow of bikes between stations is aperiodic then for transition matrices it can be calculated
+        its long term distribution of bikes at each station, which is the eigenvector of the transition matrix
+        with eigenvalue 1 or stationary distribution. The eigenvector <InlineMath>{`\\pi`}</InlineMath> sums up to 1.
       </p>
       <BlockMath>{`\\pi P = \\pi`}</BlockMath>
       <BlockMath>{`\\hat{\\pi} Q = \\hat{\\pi}`}</BlockMath>
@@ -151,8 +174,24 @@ function MarkovChain() {
         Expected number of rents and returns for each station based on the Markov chain model.
         You can adjust the expected number of rides per day using the input field. The stationary distribution
         is calculated based on the historical rides, you can choose all values or just rides done in April to September.
-        By clicking on the station you can see the expected number of rents and returns.
+        By clicking on the station you can see the expected number of rents and returns. <br />
+        Hint: To see some discrepancy between the number of rents and returns, try to set the expected number of rides
+        to some large number e.g. 10 000.
       </span>
+
+      <h3>Observations</h3>
+      <p>
+        This model is very simple, it averages all the rides over the observed period and assumes that the flow of bikes
+        is going to be the same in the future. It doesn't take into account if the stations are empty or bikes are available.
+        Besides that, the model shows which stations are more popular and which are less popular. </p>
+      <p>
+        Also it uncovers that
+        some stations have a slight discrepancy between the number of rents and returns, which could be due to the fact
+        that Rekola is doing a some sort of rebalancing (or just general bike repairs), some rides aren't recoded. Finding
+        some positive discrepancy on the rent site would suggest that if Rekola rebalances the bikes here it could increase
+        the number of rides. On the other hand, finding a negative discrepancy on the rent site would suggest that Rekola
+        should move some bikes from this station to another (ideally once with positive rent discrepancy).
+      </p>
 
       <h3 className="reference">References:</h3>
       <ol className="reference">
