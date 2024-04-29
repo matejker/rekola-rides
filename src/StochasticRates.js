@@ -82,7 +82,7 @@ function StochasticRates() {
       </div>
 
       <p>
-        From <Link to={"/rekola-rides"}>previous section</Link> is clear that
+        From <Link to={"/"}>previous section</Link> is clear that
         number of rides is highly seasonal, it varies throughout the day and
         workdays differs from weekends / public holidays. In order to avoid
         those effects, I look at rides which happened between April to September
@@ -127,14 +127,15 @@ function StochasticRates() {
         is defined as:
       </p>
 
-      <BlockMath className="center">{`Q_{\\xi}(\\tau) =
-            \\begin{pmatrix}
-            -\\lambda_{\\xi}(\\tau) & \\lambda_{\\xi}(\\tau) &  & & \\\\
-            \\mu_{\\xi}(\\tau) & -(\\mu_{\\xi}(\\tau) +\\lambda_{\\xi}(\\tau)) & \\lambda_{\\xi}(\\tau) &  &\\\\
-              & \\mu_{\\xi}(\\tau) & -(\\mu_{\\xi}(\\tau) +\\lambda_{\\xi}(\\tau)) & \\lambda_{\\xi}(\\tau) & \\\\
-             & & & & \\ddots
-            \\end{pmatrix}`}</BlockMath>
-
+      <div style={{ width: "1000px", marginLeft: "-150px", textAlign: "center" }}>
+        <BlockMath>{`Q_{\\xi}(\\tau) =
+              \\begin{pmatrix}
+              -\\lambda_{\\xi}(\\tau) & \\lambda_{\\xi}(\\tau) &  & & \\\\
+              \\mu_{\\xi}(\\tau) & -(\\mu_{\\xi}(\\tau) +\\lambda_{\\xi}(\\tau)) & \\lambda_{\\xi}(\\tau) &  &\\\\
+                & \\mu_{\\xi}(\\tau) & -(\\mu_{\\xi}(\\tau) +\\lambda_{\\xi}(\\tau)) & \\lambda_{\\xi}(\\tau) & \\\\
+               & & & & \\ddots
+              \\end{pmatrix}`}</BlockMath>
+      </div>
       <h3>Calculating rates</h3>
       <p>
         The rates of rentals and returns are estimated from the data. However
@@ -187,7 +188,9 @@ function StochasticRates() {
         be 3/2 higher). I end up using the second approach.
       </p>
 
-      <RatesMap />
+      <div  style={{ width: "1000px", marginLeft: "-150px", textAlign: "center" }}>
+        <RatesMap />
+      </div>
 
       <div style={{ textAlign: "justify" }}>
         <span className="image-desc">
@@ -208,28 +211,30 @@ function StochasticRates() {
         average 675 rides per day.
       </p>
 
-      <ul className={"inline"}>
-        {[1, 2, 3, 4, 5].map((t) => (
-          <>
-            <li>
-              <input
-                type={"radio"}
-                value={"tier"}
-                id={`radio-${t}-rates`}
-                checked={tier === t}
-                onChange={() => setTier(t)}
-              />
-              <label htmlFor={`radio-${t}-rates`}>{tierMap[t]}</label>
-            </li>
-          </>
-        ))}
-      </ul>
-      <PredictionMap rents={rentTier} returns={returnTier} />
-      <div style={{ textAlign: "justify" }}>
-        <span className="image-desc">
-          You can choose between 4 different tiers of the day, 104 clusters of
-          stations by clicking on the circles on the map.
-        </span>
+      <div style={{ width: "1000px", marginLeft: "-150px", textAlign: "center" }}>
+        <ul className={"inline"}>
+          {[1, 2, 3, 4, 5].map((t) => (
+            <>
+              <li>
+                <input
+                  type={"radio"}
+                  value={"tier"}
+                  id={`radio-${t}-rates`}
+                  checked={tier === t}
+                  onChange={() => setTier(t)}
+                />
+                <label htmlFor={`radio-${t}-rates`}>{tierMap[t]}</label>
+              </li>
+            </>
+          ))}
+        </ul>
+        <PredictionMap rents={rentTier} returns={returnTier} />
+        <div style={{ textAlign: "justify" }}>
+          <span className="image-desc">
+            You can choose between 4 different tiers of the day, 104 clusters of
+            stations by clicking on the circles on the map.
+          </span>
+        </div>
       </div>
 
       <h3 className="reference">References:</h3>

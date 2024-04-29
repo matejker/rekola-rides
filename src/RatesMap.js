@@ -84,11 +84,11 @@ const RatesMap = () => {
         </ul>
         <div
           className="left"
-          style={{ width: "350px", height: "350px", textAlign: "center" }}
+          style={{ width: "500px", height: "350px", textAlign: "center" }}
         >
           <h3>Rents</h3>
           <LineChart
-            width={300}
+            width={450}
             height={250}
             data={functionType === "density" ? rentDensity : rentCDF}
             margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
@@ -119,11 +119,11 @@ const RatesMap = () => {
 
         <div
           className="right"
-          style={{ width: "350px", height: "350px", textAlign: "center" }}
+          style={{ width: "500px", height: "350px", textAlign: "center" }}
         >
           <h3>Returns</h3>
           <LineChart
-            width={300}
+            width={450}
             height={250}
             data={functionType === "density" ? returnDensity : returnCDF}
             margin={{ top: 5, right: 20, bottom: 5, left: 0 }}

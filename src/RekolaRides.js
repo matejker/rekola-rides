@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { InlineMath } from "react-katex";
-import HeatMap from "./HeatMap";
 import Toggle from "./Toggle";
 
 import rides_heatmap from "./img/rides_heatmap.png";
@@ -21,7 +20,7 @@ function RekolaRides() {
 
   return (
     <>
-      <h2 id="intro">2. Analysis of Rekola bike sharing in Bratislava</h2>
+      <h2 id="intro">1. Analysis of Rekola bike sharing in Bratislava</h2>
       <p>
         Rekola [1] is a bike-sharing service operating in Bratislava and some
         other places in Czech Republic such as Prague. Their signature pink
@@ -32,7 +31,7 @@ function RekolaRides() {
         patterns and discover where city cyclist choose to cycle.
       </p>
 
-      <h3 id="data">2.2. Data</h3>
+      <h3 id="data">1.2. Data</h3>
       <p>
         In this project, I have scraped this <em>publicly available</em> map
         through their API and every 10 minutes I made a snapshot of the
@@ -65,7 +64,7 @@ function RekolaRides() {
         speed (km/h) and peak wind gust (km/h).
       </p>
 
-      <h3 id="stats">2.3. Mobility patterns</h3>
+      <h3 id="stats">1.3. Mobility patterns</h3>
       <p>
         Over the scope of months scraping the API, I have collected over 130K
         rides. Here are few observations.
@@ -136,7 +135,7 @@ function RekolaRides() {
         patterns seen in other cities, for instance Paris [3] and New York [4].
       </p>
 
-      <h4 id={"weather"}>2.3.1. Weather</h4>
+      <h4 id={"weather"}>1.3.1. Weather</h4>
       <p>
         Weather and seasonality is in general the most determining factor on
         users' cycling. During the winter time average number of rides drops to
@@ -156,7 +155,7 @@ function RekolaRides() {
         insignificant correlation (<em>~-0.20</em>).
       </p>
 
-      <h4 id={"durations"}>2.3.2. Ride durations</h4>
+      <h4 id={"durations"}>1.3.2. Ride durations</h4>
       <p>
         When it comes to lengths and durations of rides, those travels are in
         general shorter ones. Which supports the fact that bike rides tend to be
@@ -211,7 +210,7 @@ function RekolaRides() {
         />
       </div>
 
-      <h4 id="heatmap">2.3.3. Heatmap</h4>
+      <h4 id="heatmap">1.3.3. Heatmap</h4>
       <p>
         Future more, those shortest paths can be then plotted on the city map,
         which forms a sort of heatmap of most common <em>theoretical</em>{" "}
@@ -316,45 +315,10 @@ function RekolaRides() {
         bridge.
       </p>
 
-      <h3 id={"rents-n-returns"}>2.4. Rents and returns</h3>
-      <p>
-        The fundamental idea of bike-sharing is to rent the bike from one
-        station, ride the bike and then return the bike at another station. The
-        essence of <em>floating</em> bikes in the close system of station, is
-        captured on the map below. This shows a sort of <em>heatmap</em> of
-        rents and returns, both for each station and entire bike-sharing system.
-      </p>
-
-      <p>
-        Unsurprisingly, most of the rents and returns are located in the center
-        of the city.
-      </p>
-
-      <div
-        style={{ width: "1000px", marginLeft: "-150px", textAlign: "center" }}
-      >
-        <HeatMap />
-      </div>
-
-      <div style={{ textAlign: "justify" }}>
-        <span className="image-desc">
-          Based on the mode on the top of the map, it shows both bikes' rents
-          and returns. The more "orange" the color, the more bikes were rented
-          or returned, respectively. By hovering over a station, it shows a
-          heatmap of bikes' returns or rents from that particular station. If
-          mode is "rent", for a given stations, the map shows where the bikes
-          were returned starting from that station. On the flip side, for
-          "return" mode, it displays heatmap of where bikes were rented and
-          ended at this station. The bottom color schema shows linearly
-          distributed <i>color bins</i>
-          &nbsp; with their quantities.
-        </span>
-      </div>
-
-      <h3 id={"observations"}>2.5. Observations</h3>
+      <h3 id={"observations"}>1.5. Observations</h3>
       <p>
         There is roughly the same number of available bikes and stations to park
-        (~300). The station network is very dense and many stations are in a
+        (~300) [7]. The station network is very dense and many stations are in a
         close proximity to another stations, often less than 100m. Such a set up
         could be convenient for bike returns as user can return the bike into
         large pool of possible places. On the other hand, such equal number of
@@ -372,7 +336,7 @@ function RekolaRides() {
         can be reported to be broken, etc.
       </p>
 
-      <h3 id={"conclusion"}>2.6. Conclusion</h3>
+      <h3 id={"conclusion"}>1.6. Conclusion</h3>
       <p>
         Bratislava is (not yet) know for its residents to use bikes as a primary
         mode of transport. The daily average of rides is about 500, which for a
@@ -422,6 +386,10 @@ function RekolaRides() {
             First Principle.
           </em>{" "}
           PLOS ONE 10(8): e0134322. https://doi.org/10.1371/journal.pone.0134322
+        </li>
+        <li>
+          Wikipedia (2023), <em>Rekola</em> Wikimedia Foundation, &nbsp;
+          <a href={"https://en.wikipedia.org/wiki/Rekola#Outside_of_the_Czech_Republic"}>Wikipedia: Rekola#Outside_of_the_Czech_Republic</a>
         </li>
       </ol>
 

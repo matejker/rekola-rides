@@ -1,7 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import RekolaRides from "./RekolaRides";
-import Home from "./Home";
 import RekolaClusters from "./RekolaClusters";
 import StochasticRates from "./StochasticRates";
 import MarkovChain from "./MarkovChain";
@@ -28,27 +27,21 @@ export default function App() {
           <h2>Chapters</h2>
           <ol id={"chapters"}>
             <li>
-              <Link to="/">Intro</Link>
-            </li>
-            <li>
-              <Link to="/rekola-rides">Rekola rides</Link>
+              <Link to="/">Rekola rides</Link>
             </li>
             <li>
               <Link to="/rekola-clusters">Rekola station clusters</Link>
             </li>
             <li>
-              <Link to="/stochastic-rates">Stochastic rates</Link>
+              <Link to="/markov-chain">Markov chain</Link>
             </li>
             <li>
-              <Link to="/markov-chain">Markov chain</Link>
+              <Link to="/stochastic-rates">Stochastic rates</Link>
             </li>
           </ol>
 
           <Switch>
             <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/rekola-rides">
               <RekolaRides />
             </Route>
             <Route path="/rekola-clusters">
