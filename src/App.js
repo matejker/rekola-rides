@@ -4,6 +4,7 @@ import RekolaRides from "./RekolaRides";
 import RekolaClusters from "./RekolaClusters";
 import StochasticRates from "./StochasticRates";
 import MarkovChain from "./MarkovChain";
+import Home from "./Home";
 
 import github from "./img/github.png";
 
@@ -27,7 +28,10 @@ export default function App() {
           <h2>Chapters</h2>
           <ol id={"chapters"}>
             <li>
-              <Link to="/">Rekola rides</Link>
+              <Link to="/">Intro</Link>
+            </li>
+            <li>
+              <Link to="/rekola-rides">Rekola rides</Link>
             </li>
             <li>
               <Link to="/rekola-clusters">Rekola station clusters</Link>
@@ -42,6 +46,9 @@ export default function App() {
 
           <Switch>
             <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/rekola-rides">
               <RekolaRides />
             </Route>
             <Route path="/rekola-clusters">

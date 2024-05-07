@@ -11,7 +11,7 @@ function RekolaClusters() {
 
   return (
     <>
-      <h2>Rekola station clusters</h2>
+      <h2>3. Rekola station clusters</h2>
 
       <p>
         Rekola in Bratislava is operating as a dockless bikesharing service [1], which means that bike can be left at stations
@@ -71,7 +71,7 @@ function RekolaClusters() {
         while some stations are very light, meaning they are not used often.
       </p>
 
-      <h3>Grouping stations into clusters</h3>
+      <h3>3.1. Grouping stations into clusters</h3>
 
       <p>
         However, the total number of stations and bikes is roughly equal to 300 and some stations being very close to each
@@ -122,7 +122,7 @@ function RekolaClusters() {
         </div>
       </div>
 
-      <h3>Conclusion</h3>
+      <h3>3.2. Conclusion</h3>
       <p>
         This clustering will be essential stepping stone for further analysis. The clustering will allow us to reduce the
         number of stations and thus reduce the number of parameters in the model. I assume that user incentive to use

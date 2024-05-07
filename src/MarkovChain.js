@@ -19,7 +19,7 @@ function MarkovChain() {
 
   return (
     <>
-      <h2>Markov Chains</h2>
+      <h2>4. Markov Chains</h2>
       <p>
         Fundamentally bikesharing is about the flow of bikes between stations.
         The flow can be modelled as a{" "}
@@ -32,20 +32,20 @@ function MarkovChain() {
         Formally defined, a Markov chain is a stochastic process with the memoryless property (also called Markov property).
         The probability of the next state depends only on the current state and not on the sequence of events that preceded it.
         (i.e. probability of user riding a bike from station A to station B depends only on the current station A
-        regardless where the bike was stationed before arriving to station A).
+        regardless where the bike was stationed before arriving to the station A).
       </p>
       <p>
-        Let <InlineMath>{`X_n`}</InlineMath> be a state (position of the bike) at time step n, then the Markov property
-        can be written as:
+        Let <InlineMath>{`X_k`}</InlineMath> be a state (position of the bike) at time step <InlineMath>{`k`}</InlineMath>,
+        then the Markov property can be written as:
       </p>
 
-      <BlockMath>{`P(X_{n+1}=j | X_{n}=i,X_{n-1}=i_{n-1}, \\dots, X_{0}=i_0)=`}</BlockMath>
-      <BlockMath>{`P(X_{n+1}=j|X_{n}=i) = p_{ij}`}</BlockMath>
+      <BlockMath>{`P(X_{k+1}=j | X_{k}=i,X_{n-1}=i_{k-1}, \\dots, X_{0}=i_0)=`}</BlockMath>
+      <BlockMath>{`P(X_{k+1}=j | X_{k}=i) = p_{ij}`}</BlockMath>
 
       <p>
-        <InlineMath>{`p_{ij}`}</InlineMath> is then call a transition probability from state i to state j
-        (probability of a bike going from station i to station j). All transition probabilities are stored in a matrix
-        called a transition matrix <InlineMath>{`P`}</InlineMath>.
+        <InlineMath>{`p_{ij}`}</InlineMath> is then called a transition probability from state <InlineMath>{`i`}</InlineMath> to
+        state <InlineMath>{`j`}</InlineMath> (probability of a bike going from station i to station j). All transition
+        probabilities are stored in a matrix called a transition matrix <InlineMath>{`P`}</InlineMath>.
       </p>
       <BlockMath>{`P =
               \\begin{pmatrix}
@@ -55,7 +55,7 @@ function MarkovChain() {
               p_{n1} & p_{n2} & \\cdots & p_{nn}
               \\end{pmatrix}`}</BlockMath>
 
-      <h3>Determining transition matrix based on historical rides</h3>
+      <h3>4.1. Determining transition matrix based on historical rides</h3>
       <p>
         First, to reduce the number of stations, I used previously described &nbsp;<Link to={"/rekola-clusters"}>K-mean</Link> clustering,
         and compound all the stations into <InlineMath>{`n=104`}</InlineMath> clusters.
@@ -65,8 +65,8 @@ function MarkovChain() {
         matrices. Let <InlineMath>{`A = a_\{ij\}`}</InlineMath> be the attraction matrix where an entry <InlineMath>{`a_\{ij\}`}</InlineMath>
         is number of rides over the observed period from station <InlineMath>{`i`}</InlineMath> to station <InlineMath>{`j`}</InlineMath>.
         The production matrix <InlineMath>{`B = b_\{ij\}`}</InlineMath> is defined analogously. The production matrix is the transpose of the
-        attraction matrix. To calculate the the transition matrix <InlineMath>{`P`}</InlineMath> / <InlineMath>{`Q`}</InlineMath> I
-        normalized the attraction / production matrix by the sum of each row.
+        attraction matrix. To calculate the the transition matrix <InlineMath>{`P`}</InlineMath> / <InlineMath>{`Q`}</InlineMath>,
+        I normalized the attraction / production matrix by the sum of each row.
       </p>
       <BlockMath>{`p_{ij} = \\frac{a_{ij}}{\\sum_{i=1}^na_{ij}}`}</BlockMath>
       <BlockMath>{`q_{ij} = \\frac{b_{ij}}{\\sum_{i=1}^nb_{ij}}`}</BlockMath>
@@ -83,7 +83,7 @@ function MarkovChain() {
           model for stations in bike sharing systems in <em>Zhongshan City</em> China.
       </p>
 
-      <h3>Predicting number rides per day</h3>
+      <h3>4.2. Predicting number rides per day</h3>
       <p>
         In the <Link to={"/"}>previous section</Link>, I had showed that the number of rides per day is
         highly dependent on the day of the week, seasonality and weather, e.g. there is ~0.85 correlation with avg.
@@ -113,7 +113,7 @@ function MarkovChain() {
         <img src={rides_prediction} style={{ width: "1000px", marginLeft: "-150px" }} />
       </div>
 
-      <h3>Predicting rents and returns</h3>
+      <h3>4.3. Predicting rents and returns</h3>
 
       <p>
         The expected number of daily returns / rents from each station can be
@@ -171,7 +171,7 @@ function MarkovChain() {
       </div>
 
       <span className="image-desc">
-        Expected number of rents and returns for each station based on the Markov chain model.
+        Expected number of rents and returns for each station is based on the Markov chain model.
         You can adjust the expected number of rides per day using the input field. The stationary distribution
         is calculated based on the historical rides, you can choose all values or just rides done in April to September.
         By clicking on the station you can see the expected number of rents and returns. <br />
@@ -179,7 +179,7 @@ function MarkovChain() {
         to some large number e.g. 10 000.
       </span>
 
-      <h3>Observations</h3>
+      <h3>4.4. Observations</h3>
       <p>
         This model is very simple, it averages all the rides over the observed period and assumes that the flow of bikes
         is going to be the same in the future. It doesn't take into account if the stations are empty or bikes are available.

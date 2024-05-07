@@ -20,18 +20,9 @@ function RekolaRides() {
 
   return (
     <>
-      <h2 id="intro">1. Analysis of Rekola bike sharing in Bratislava</h2>
-      <p>
-        Rekola [1] is a bike-sharing service operating in Bratislava and some
-        other places in Czech Republic such as Prague. Their signature pink
-        coloured bikes are distributed all over the wider city center and
-        available to registered users for short-term rental (up to 24 hours).
-        Users, then can see and use all the available bikes at the fixed
-        stations. In this section I will take a look at some basic mobility
-        patterns and discover where city cyclist choose to cycle.
-      </p>
+      <h2 id="intro">2. Analysis of Rekola bike sharing in Bratislava</h2>
 
-      <h3 id="data">1.2. Data</h3>
+      <h3 id="data">2.1. Data</h3>
       <p>
         In this project, I have scraped this <em>publicly available</em> map
         through their API and every 10 minutes I made a snapshot of the
@@ -40,9 +31,7 @@ function RekolaRides() {
         where bikes disappear and reappear on the map (API snapshot), I have
         constructed rides. A ride consists of start and end position, duration
         of a ride (from 10 minutes to 8 hours{" "}
-        <sup>
-          <a href="#40min">1</a>
-        </sup>
+        <sup><a href="#40min">1</a></sup>
         ) and obviously the bike which has been used.
       </p>
 
@@ -54,7 +43,7 @@ function RekolaRides() {
 
       <p>
         Additionally, to compare mobility patterns with historical weather data,
-        I had used Meteostat [2] Python library. Meteostat offers historical
+        I had used Meteostat [1] Python library. Meteostat offers historical
         weather data for numerous world location, including Bratislava{" "}
         <sup>
           <a href="#meteostat">2</a>
@@ -64,7 +53,7 @@ function RekolaRides() {
         speed (km/h) and peak wind gust (km/h).
       </p>
 
-      <h3 id="stats">1.3. Mobility patterns</h3>
+      <h3 id="stats">2.2. Mobility patterns</h3>
       <p>
         Over the scope of months scraping the API, I have collected over 130K
         rides. Here are few observations.
@@ -132,10 +121,10 @@ function RekolaRides() {
       <p>
         On the other hand, over the weekends the usage of bikes is more equally
         distributed with no sharp peak. Those observations match bike sharing
-        patterns seen in other cities, for instance Paris [3] and New York [4].
+        patterns seen in other cities, for instance Paris [2] and New York [3].
       </p>
 
-      <h4 id={"weather"}>1.3.1. Weather</h4>
+      <h4 id={"weather"}>2.2.1. Weather</h4>
       <p>
         Weather and seasonality is in general the most determining factor on
         users' cycling. During the winter time average number of rides drops to
@@ -155,7 +144,7 @@ function RekolaRides() {
         insignificant correlation (<em>~-0.20</em>).
       </p>
 
-      <h4 id={"durations"}>1.3.2. Ride durations</h4>
+      <h4 id={"durations"}>2.2.2. Ride durations</h4>
       <p>
         When it comes to lengths and durations of rides, those travels are in
         general shorter ones. Which supports the fact that bike rides tend to be
@@ -210,7 +199,7 @@ function RekolaRides() {
         />
       </div>
 
-      <h4 id="heatmap">1.3.3. Heatmap</h4>
+      <h4 id="heatmap">2.2.3. Heatmap</h4>
       <p>
         Future more, those shortest paths can be then plotted on the city map,
         which forms a sort of heatmap of most common <em>theoretical</em>{" "}
@@ -315,7 +304,7 @@ function RekolaRides() {
         bridge.
       </p>
 
-      <h3 id={"observations"}>1.5. Observations</h3>
+      <h3 id={"observations"}>2.3. Observations</h3>
       <p>
         There is roughly the same number of available bikes and stations to park
         (~300) [7]. The station network is very dense and many stations are in a
@@ -336,7 +325,7 @@ function RekolaRides() {
         can be reported to be broken, etc.
       </p>
 
-      <h3 id={"conclusion"}>1.6. Conclusion</h3>
+      <h3 id={"conclusion"}>2.5. Conclusion</h3>
       <p>
         Bratislava is (not yet) know for its residents to use bikes as a primary
         mode of transport. The daily average of rides is about 500, which for a
@@ -348,11 +337,6 @@ function RekolaRides() {
       </p>
       <h3 className="reference">References:</h3>
       <ol className="reference">
-        <li>
-          Rekola Bikesharing SK s.r.o.,{" "}
-          <em>"Rekola - Discover city with Rekola Bikesharing</em>, &nbsp;
-          <a href="https://www.rekola.sk/">link</a>
-        </li>
         <li>
           Christian Sebastian Lamprecht (2023) <em>"Meteostat Python"</em>.
           0000-0003-3301-2852, &nbsp;

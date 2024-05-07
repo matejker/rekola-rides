@@ -45,11 +45,12 @@ function StochasticRates() {
   console.log(rentTier.reduce((a, b) => a + b, 0));
   return (
     <>
-      <h2>Stochastic rates</h2>
+      <h2>5. Stochastic rates</h2>
       <p>
         The bike sharing is in heart a stochastic process. In this section,
         I will model the rentals and returns as time-inhomogeneous Poisson process. This will allow me to predict
-        the demand and supply of bikes for each station cluster.
+        the demand and supply of bikes for each station cluster. More importantly, look at the possible demands
+        when station clusters are empty, therefore, suggests some rebalancing strategies.
       </p>
       <p>
         The rates of rentals and returns are assumed to be
@@ -136,7 +137,7 @@ function StochasticRates() {
                & & & & \\ddots
               \\end{pmatrix}`}</BlockMath>
       </div>
-      <h3>Calculating rates</h3>
+      <h3>5.1. Calculating rates</h3>
       <p>
         The rates of rentals and returns are estimated from the data. However
         the Rekola system is not limited by number of available slots at the
@@ -202,7 +203,7 @@ function StochasticRates() {
         </span>
       </div>
 
-      <h3>Predicting demand and supply</h3>
+      <h3>5.2. Predicting demand and supply</h3>
       <p>
         Knowing the rates we can predict expected (average) number of rentals
         and returns for each station cluster. On the map below, you can see the
@@ -237,6 +238,21 @@ function StochasticRates() {
         </div>
       </div>
 
+      <h3>5.3. Supply and demand discrepancy</h3>
+      <p>
+        One of the most important goal of this model is to calculate the demand for each station cluster, given
+        the fact that sometimes the cluster might be empty. This creates a discrepancy between supply and demand for
+        each of the station clusters, where supply is not restricted i.e. you can return bike to any station cluster, but
+        you can't rent a bike from an empty station cluster.
+      </p>
+      <p>
+        This discrepancy hints how many possible rides would happened if there was always a bike available to rent at
+        all stations / clusters. In the monitored period (April to September), with the average of 675 rides per day,
+        the <em>hypothetical</em> induced demand would account up to 20% increase in the number of rides. Which is a
+        astonishing number, as it would mean that the demand for bike-sharing is much higher than the
+        supply <sup><a href="#induced-demand">1</a></sup>.
+      </p>
+
       <h3 className="reference">References:</h3>
       <ol className="reference">
         <li>
@@ -254,6 +270,19 @@ function StochasticRates() {
           Richard Durrett. (2016) <em>Essentials of Stochastic Processes</em>.
           3rd edition 2016. Cham: Springer International Publishing.
         </li>
+      </ol>
+
+      <ol className="foot-notes">
+        <li id="induced-demand">About 2/3  of those extra rides could happen with the same amount of bikes if they are
+          rebalanced between the stations. So, obviously Rekola could balance bikes
+        in every <em>moment</em> so that there will always at least one bike at each station cluster, which is nearly impossible.
+        Therefore, a more realistic guess would be to look at the tiers independently. If bikes would always be
+        available, then expected number of rents (rides) would be <InlineMath>{`\\sum_{\\xi}\\sum_{\\tau}|\\tau|\\mu_{\\xi} \\approx 855`}</InlineMath>,
+        which 180 more than the actual rides in the accounted period. If we move bikes from places where more bikes are returned then rented,
+        it would account for <InlineMath>{`\\sum_{\\xi}\\sum_{\\tau}|\\tau|(\\lambda_{\\xi} - \\mu_{\\xi})^+ \\approx 120`}</InlineMath>,
+        which is 2/3 of the extra rides. Obviously all of those calculation have to be taken with a large grain of salt,
+        bikes cannot be splitted into smaller pieces (that's what I am implicitly doing here, collecting fractions of unused
+        bikes and rebalancing them across the city).</li>
       </ol>
     </>
   );
